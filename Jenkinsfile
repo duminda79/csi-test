@@ -100,13 +100,13 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                    sh("aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 455684304266.dkr.ecr.us-east-1.amazonaws.com")
+                    sh("aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 264672321272.dkr.ecr.us-east-1.amazonaws.com/")
 		   script { 
 					if ("$GIT_BRANCH" == "main") {
-						sh("docker push 455684304266.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${GIT_BRANCH}_${BUILD_NUMBER}")	
+						sh("docker push 264672321272.dkr.ecr.us-east-1.amazonaws.com//${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${GIT_BRANCH}_${BUILD_NUMBER}")	
 					}
 					else {
-					    sh("docker push 455684304266.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${BRANCH}_${BUILD_NUMBER}")
+					    sh("docker push 264672321272.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${BRANCH}_${BUILD_NUMBER}")
 					}
 			}
 
@@ -130,3 +130,4 @@ pipeline {
 		}
 	}
 }
+
