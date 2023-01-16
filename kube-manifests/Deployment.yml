@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csi-deployment
+  labels:
+    app: csi
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: csi
+  template:
+    metadata:
+      labels:
+        app: csi
+    spec:
+      containers:
+        - name: csi
+          image: 264672321272.dkr.ecr.us-east-1.amazonaws.com/:
+          ports:
+          - containerPort: 80
+          resources:
+            requests:
+              cpu: "100m"       
+              memory: "200Mi"
