@@ -119,15 +119,5 @@ pipeline {
 			}
 		}
 	}
-
-	post {
-		failure {
-			notifyFailed()
-		}
-
-		success {
-			notifySucceed(abort, deployed)
-		}
-	}
 }
 
