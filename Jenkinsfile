@@ -114,7 +114,7 @@ pipeline {
 				script {
 					sh """
 					echo ${BUILD_NUMBER}
-					sed -E -i'' "s/(.*csi:).*/\1$${GIT_BRANCH}_${BUILD_NUMBER}/" ${APP_EKS}/${EKS_DEPLOY_YML}
+					sed -E -i'' "s/(.*csi:).*/\1${GIT_BRANCH}_${BUILD_NUMBER}/" ${APP_EKS}/${EKS_DEPLOY_YML}
 					cat ${APP_EKS}/${EKS_DEPLOY_YML}
 					kubectl apply -f ${APP_EKS} --namespace csi-dev --context ${EKS_Cluster}
 					"""
