@@ -1,12 +1,13 @@
 def abort					= false
-def APP_DIR="app-delivarables"
-def APP_EKS="kube-manifests"
+def APP_DIR					= "app-delivarables"
+def APP_EKS					= "kube-manifests"
+def EKS_Cluster				= "csi-test"
 def APP_NAME				= "incentivio-admin-api"
 def deployed				= false
-def EKS_DEPLOY_YML="Deployment.yml"
-def BRANCH= ""
-def DOCKER_IMAGE_REPO="csi"
-def DOCKER_IMAGE_REPO_TAG="csi"
+def EKS_DEPLOY_YML			= "Deployment.yml"
+def BRANCH					= ""
+def DOCKER_IMAGE_REPO		= "csi"
+def DOCKER_IMAGE_REPO_TAG	= "csi"
 
 pipeline {
 
@@ -81,10 +82,7 @@ pipeline {
 						  BRANCH = BRANCH_NAME;
 						}
 		   		
-                sh """
-			  
-		
-		   
+                sh """   
 					echo ${BUILD_NUMBER}
 					sed -i -e "s/\\(${DOCKER_IMAGE_REPO_TAG}-v_\\).*/\\1${BRANCH}_${BUILD_NUMBER}/" ${APP_EKS}/${EKS_DEPLOY_YML}
 					cd ${APP_DIR}
@@ -112,7 +110,16 @@ pipeline {
 
             }
         }
-
+		stage ('Dev Deployment') {
+			steps {
+				script {
+					sh """
+					cat ${APP_EKS}/${EKS_DEPLOY_YML}
+					kubectl apply -f ${APP_EKS} --namespace csi-dev --context ${EKS_Cluster}
+					"""
+				}
+			}
+		}
 		stage("Clean Workspace") {
 			steps {
 				cleanWs()
