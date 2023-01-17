@@ -64,7 +64,6 @@ pipeline {
                 sh """
 					echo ${BUILD_NUMBER}
                     sed -i -e "s/\\(${DOCKER_IMAGE_REPO_TAG}-v_\\).*/\\1${GIT_BRANCH}_${BUILD_NUMBER}/" ${APP_EKS}/${EKS_DEPLOY_YML}
-					cat ${APP_EKS}/${EKS_DEPLOY_YML}
 					cd ${APP_DIR}
 					docker build --no-cache -t 264672321272.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${GIT_BRANCH}_${BUILD_NUMBER} .
                     """
@@ -115,6 +114,8 @@ pipeline {
 			steps {
 				script {
 					sh """
+					echo ${BUILD_NUMBER}
+                    sed -i -e "s/\\(${DOCKER_IMAGE_REPO_TAG}-v_\\).*/\\1${GIT_BRANCH}_${BUILD_NUMBER}/" ${APP_EKS}/${EKS_DEPLOY_YML}
 					cat ${APP_EKS}/${EKS_DEPLOY_YML}
 					kubectl apply -f ${APP_EKS} --namespace csi-dev --context ${EKS_Cluster}
 					"""
