@@ -6,7 +6,7 @@ def deployed				= false
 def EKS_DEPLOY_YML			= "Deployment.yml"
 def BRANCH					= ""
 def DOCKER_IMAGE_REPO		= "csi"
-def DOCKER_IMAGE_REPO_TAG	= "csi"
+def DOCKER_IMAGE_REPO_TAG	= "test"
 
 pipeline {
 
