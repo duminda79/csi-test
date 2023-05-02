@@ -63,6 +63,7 @@ pipeline {
                 sh """
 					echo ${BUILD_NUMBER}
 					cd ${APP_DIR}
+					whoami
 					docker build --no-cache -t 264672321272.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_IMAGE_REPO}:${DOCKER_IMAGE_REPO_TAG}-v_${GIT_BRANCH}_${BUILD_NUMBER} .
                     """
 					} else {		
