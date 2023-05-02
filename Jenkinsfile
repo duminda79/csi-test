@@ -1,7 +1,7 @@
 def abort					= false
 def APP_DIR					= "app-delivarables"
 def APP_EKS					= "kube-manifests"
-def EKS_Cluster				= "test-csi"
+def EKS_Cluster				= "csi-dev"
 def deployed				= false
 def EKS_DEPLOY_YML			= "Deployment.yml"
 def BRANCH					= ""
@@ -116,7 +116,7 @@ pipeline {
 					sh """
 					echo ${BUILD_NUMBER}
 					cat ${APP_EKS}/${EKS_DEPLOY_YML}
-					kubectl apply -f ${APP_EKS} --namespace csi-dev --context ${EKS_Cluster}
+					kubectl apply -f ${APP_EKS} --namespace dev --context ${EKS_Cluster}
 					"""
 				}
 			}
