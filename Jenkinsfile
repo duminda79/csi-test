@@ -10,7 +10,7 @@ def DOCKER_IMAGE_REPO_TAG	= "test"
 
 pipeline {
 
-	agent any
+	agent master
 
 	// Polling changes from GIT repository every 5 minutes
 	triggers {
