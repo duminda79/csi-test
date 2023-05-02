@@ -9,7 +9,7 @@ metadata:
     # Ingress Core Settings
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/subnets: subnet-0fa2ff4f1fd117a51, subnet-0d32ae4a5f474829a
+    alb.ingress.kubernetes.io/subnets: subnet-0e4e29f5328180c0b, subnet-0d401aee69e1e9983
     alb.ingress.kubernetes.io/target-type: ip 
     # Health Check Settings
     #alb.ingress.kubernetes.io/healthcheck-protocol: HTTP 
